@@ -1,0 +1,13 @@
+Page Object Model--> It is a design pattern which syas that each webpage is considered as single Page class where we write all the locators and Actions.
+
+Benefits of using POM
+1. Reusability: - 
+2. Maintainablity
+3. Readability - 
+4.Scalability
+5.Abstraction
+
+Test script
+Login
+Add to cart
+Remove from cart
