@@ -1,4 +1,4 @@
-import { loginLocators } from "../locators/LoginLocators";
+import { LoginLocators } from "../locators/LoginLocators";
 import { Page } from "@playwright/test";
 
 export class LoginPage{
@@ -7,8 +7,8 @@ export class LoginPage{
     }
 
     async login(username: string,password: string){
-        await this.page.fill(loginLocators.usernameInput,username);
-        await this.page.fill(loginLocators.passwordInput,password);
-        await this.page.click(loginLocators.loginButton)
+        await this.page.fill(LoginLocators.usernameInput,username);
+        await this.page.fill(LoginLocators.passwordInput,password);
+        await this.page.click(LoginLocators.loginButton)
     }
 }
