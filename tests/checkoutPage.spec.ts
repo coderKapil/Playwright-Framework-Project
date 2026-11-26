@@ -6,7 +6,7 @@ import { CartPage } from "../pages/CartPage"
 import { CheckoutPage } from "../pages/CheckoutPage"
 import { checkoutData } from "../test-data/CheckoutData"
 
-test.describe("Cart page validation", () => {
+test.describe("Checkout page validation", () => {
 
     let loginpage: LoginPage
     let productpage: ProductPage
@@ -46,6 +46,13 @@ test.describe("Cart page validation", () => {
         await cartPage.clickCheckoutButton()
         await checkoutPage.fillCheckoutDetails(checkoutData.firstName,checkoutData.lastName,checkoutData.postal)
         await checkoutPage.clickContinueButton();
+    })
+
+    test.only("Validate the error when clicking on Continue button with no data",async({page})=>{
+        await cartPage.clickCheckoutButton()
+         await checkoutPage.clickContinueButton();
+         const errorMessage = await checkoutPage.getErrorMessage();
+         expect(errorMessage?.trim()).toBe("Error: First Name is required")
     })
 
 })

@@ -4,6 +4,6 @@ export const checkoutpagelocator = {
     lastName: "#last-name",
     postal: "#postal-code",
     cancelButton: "#cancel",
-    continuebutton: "#continue"
-
+    continuebutton: "#continue",
+    errorMessage:"[data-test='error']"
 }

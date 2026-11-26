@@ -28,4 +28,8 @@ export class CheckoutPage {
         await this.page.click(checkoutpagelocator.continuebutton)
     }
 
+    async getErrorMessage(){
+        return await this.page.locator(checkoutpagelocator.errorMessage).textContent()
+    }
+
 }
