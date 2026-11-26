@@ -41,6 +41,7 @@ export class ProductPage {
 
         for (let i = 0; i < btnCount; i++) {
             await buttons.nth(i).click();
+            await this.page.waitForTimeout(1000)
         }
     }
 
@@ -52,7 +53,7 @@ export class ProductPage {
             const name = await addProducts.nth(i).textContent();
             if (name && productNames.includes(name.trim())) {
                 await this.page.locator(productPageLocator.addToCartButtons).nth(i).click();
-                await this.page.waitForTimeout(4000);
+                await this.page.waitForTimeout(1000);
             }
         }
     }
@@ -84,6 +85,54 @@ export class ProductPage {
         const prices = await this.page.locator(productPageLocator.productPrice).allTextContents();
         //converting prices value from string to float value and replacing $ symbol from prices for comparison
         return prices.map(price => parseFloat(price.replace('$', '')))
+    }
+
+    async clickOnCartLink() {
+        await this.page.locator(productPageLocator.cartLink).click();
+    }
+
+    async getFirstProductDetails() {
+        const name = await this.page.locator(productPageLocator.productName).first().textContent();
+        const description = await this.page.locator(productPageLocator.productDescription).first().textContent();
+        const price = await this.page.locator(productPageLocator.productPrice).first().textContent();
+        //As we are only sending a single product detail as an object so we can use object notation
+        return {
+            name: name?.trim(),
+            description: description?.trim(),
+            price: price?.trim()
+        }
+
+    }
+
+    async getAllProductsDetails() {
+        const allnames = await this.page.locator(productPageLocator.productName).allTextContents();
+        const alldescriptions = await this.page.locator(productPageLocator.productDescription).allTextContents();
+        const allprices = await this.page.locator(productPageLocator.productPrice).allTextContents();
+        //here we are sending multiple product details so here we have to use array of objects
+        const allproducts = allnames.map((_, i) =>
+        ({
+            name: allnames[i].trim(),
+            description: alldescriptions[i].trim(),
+            price: allprices[i].trim()
+        }))
+        return allproducts
+
+    }
+
+    async getSpecificProductDetails(productNames: string[]) {
+        const allnames = await this.page.locator(productPageLocator.productName).allTextContents();
+        const alldescriptions = await this.page.locator(productPageLocator.productDescription).allTextContents();
+        const allprices = await this.page.locator(productPageLocator.productPrice).allTextContents();
+        //here we are sending multiple product details so here we have to use array of objects
+        const allproducts = allnames.map((_, i) =>
+        ({
+            name: allnames[i].trim(),
+            description: alldescriptions[i].trim(),
+            price: allprices[i].trim()
+        }))
+
+        return allproducts.filter(p => productNames.includes(p.name))
+
     }
 
 }
