@@ -35,7 +35,10 @@ export class CartPage {
 
     async removeFirstProduct(){
         await this.page.locator(cartPageLocators.removeButton).first().click();
-        await this.page.waitForTimeout(2000)
+    }
+
+    async clickCheckoutButton(){
+      await this.page.locator(cartPageLocators.checkoutButton).click();
     }
 
 }
