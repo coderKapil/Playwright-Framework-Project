@@ -42,7 +42,7 @@ test.describe("Cart page validation", () => {
           expect(page).toHaveURL("https://www.saucedemo.com/cart.html")
     })
 
-    test("Validate Continue button functionality",async({page})=>{
+    test("Validate Continue button functionality",async()=>{
         await cartPage.clickCheckoutButton()
         await checkoutPage.fillCheckoutDetails(checkoutData.firstName,checkoutData.lastName,checkoutData.postal)
         await checkoutPage.clickContinueButton();

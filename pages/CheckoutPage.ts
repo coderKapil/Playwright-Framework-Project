@@ -1,6 +1,5 @@
 import { Page } from "@playwright/test";
 import { checkoutpagelocator } from "../locators/CheckoutPageLocator";
-import { checkoutData } from "../test-data/CheckoutData";
 
 export class CheckoutPage {
     constructor(private page: Page) {
@@ -21,11 +20,11 @@ export class CheckoutPage {
         await this.page.fill(checkoutpagelocator.postal, postal)
     }
 
-    async clickCancelButton(){
+    async clickCancelButton() {
         await this.page.click(checkoutpagelocator.cancelButton)
     }
 
-    async clickContinueButton(){
+    async clickContinueButton() {
         await this.page.click(checkoutpagelocator.continuebutton)
     }
 
